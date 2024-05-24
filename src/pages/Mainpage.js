@@ -1,7 +1,9 @@
 import React from 'react'
 import './Search.css'
 import { CiSearch } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
 const Mainpage = () => {
+    const navigate = useNavigate()
     return (
         <div>
             <div className='inputdiv gap-2'>
@@ -9,7 +11,7 @@ const Mainpage = () => {
                 <CiSearch className=' cursor-pointer' size={40} />
             </div>
             <div>
-                <button className='upload'>Upload</button>
+                <button onClick={() => navigate('/upload')} className='upload'>Upload</button>
             </div>
         </div>
     )
