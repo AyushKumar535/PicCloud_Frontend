@@ -37,8 +37,8 @@
 
 .file-upload-form {
     width: 100wh;
-    height: 100vh;
-    display: flex;
+    display: grid;
+    margin: auto;
     align-items: center;
     justify-content: center;
 }
