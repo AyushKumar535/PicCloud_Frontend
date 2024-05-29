@@ -1,10 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Lottie from "lottie-react";
 import './landing.css'
 import Animation from "../images/HDOskFySHs (1).json";
 import { useNavigate } from 'react-router-dom';
 const Landing = () => {
     const navigate = useNavigate()
+    const checkForLogin = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/auth/checkLogin", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.isLogged) { 
+                console.log("User is logged in");
+                setTimeout(() => {
+                    navigate('/main');
+                }, 3000);
+            } else {
+                console.log("User is not logged in");
+            }
+        } catch (error) {
+            console.error("Error while checking login status:", error);
+        }
+    };
+
+    useEffect(() => {
+        checkForLogin();
+    }, [])
     return (
         <div className="text-gray-600 body-font mt-16">
             <div className="container mx-auto px-4 lg:px-10 py-12 md:flex md:flex-row md:items-center md:justify-between">
