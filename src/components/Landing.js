@@ -7,16 +7,19 @@ const Landing = () => {
     const navigate = useNavigate()
     const checkForLogin = async () => {
         try {
+            const token = localStorage.getItem('token');
+            console.log(token)
             const res = await fetch("http://localhost:5000/auth/checkLogin", {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
             });
 
             const data = await res.json();
 
-            if (res.ok && data.isLogged) { 
+            if (res.ok && data.isLogged) {
                 console.log("User is logged in");
                 setTimeout(() => {
                     navigate('/main');
@@ -33,7 +36,7 @@ const Landing = () => {
         checkForLogin();
     }, [])
     return (
-        <div className="text-gray-600 body-font mt-16">
+        <div className="text-gray-600 body-font mt-16 ">
             <div className="container mx-auto px-4 lg:px-10 py-12 md:flex md:flex-row md:items-center md:justify-between">
                 <div className="lg:flex-grow md:w-1/2 lg:pr-12 md:pr-8 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                     <h1 className="title-font sm:text-5xl text-4xl mb-4 font-bold text-gray-900">One platform, Endless Possibilities.</h1>

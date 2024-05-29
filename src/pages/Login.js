@@ -35,12 +35,10 @@ const Login = () => {
         })
 
         let data = await res.json();
-        if (data) {
+        if (data && data.token) {
             toast.success(data.message)
             console.log(data.token)
-            if (data.token) {
-                localStorage.setItem('token', data.token);
-            }
+            localStorage.setItem('token', data.token);
             console.log(data)
             setTimeout(() => {
                 navigate('/main')
