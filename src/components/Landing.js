@@ -8,7 +8,6 @@ const Landing = () => {
     const checkForLogin = async () => {
         try {
             const token = localStorage.getItem('token');
-            console.log(token)
             const res = await fetch("http://localhost:5000/auth/checkLogin", {
                 method: 'GET',
                 headers: {
