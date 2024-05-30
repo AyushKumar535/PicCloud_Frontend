@@ -32,14 +32,14 @@ const Mainpage = () => {
     useEffect(() => {
         getAllPosts()
     }, [])
-    console.log(posts);
+
     return (
         <div>
             <Toaster />
-            <div className='inputdiv gap-2'>
+            {/* <div className='inputdiv gap-2'>
                 <input type="text" name="text" placeholder="Search images with name..." class="input" />
                 <CiSearch className=' cursor-pointer' size={40} />
-            </div>
+            </div> */}
             <div>
                 <button onClick={() => navigate('/upload')} className='upload'>Upload</button>
             </div>
@@ -48,8 +48,8 @@ const Mainpage = () => {
                 {
                     posts.map((post, index) => {
                         return (
-                            <div className='flex'>
-                                <Card post={post.mylink} key={index} />
+                            <div key={index} className='flex'>
+                                <Card post={post.mylink} />
                             </div>
                         )
                     })

@@ -4,9 +4,11 @@ import './login.css'
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { logIn } from '../redux/features/auth-slice';
+import { FaSpinner } from 'react-icons/fa6';
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -22,8 +24,10 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault()
+        setLoading(true)
         if (formData.email === '' || formData.password === '') {
             toast.error('Please fill all the fields')
+            setLoading(false)
             return
         }
         let res = await fetch("http://localhost:5000/auth/login", {
@@ -42,6 +46,7 @@ const Login = () => {
             toast.success(data.message)
             localStorage.setItem('token', data.token);
             dispatch(logIn(true))
+            setLoading(false)
             setTimeout(() => {
                 navigate('/main')
             }, 3000)
@@ -49,6 +54,7 @@ const Login = () => {
         }
         else {
             toast.error(data.message);
+            setLoading(false)
         }
 
     }
@@ -85,7 +91,13 @@ const Login = () => {
                     />
                 </div>
                 <div className="btn">
-                    <button type="submit" className="button1">Login</button>
+                    <div className='button1 flex gap-2 justify-center items-center'>
+                        <button type="submit " className="">Login</button>
+                        {
+                            loading &&
+                            <FaSpinner className='animate-spin' size={20} />
+                        }
+                    </div>
                     <button type="button" onClick={() => navigate('/register')} className="button2">Signup</button>
                 </div>
             </form>

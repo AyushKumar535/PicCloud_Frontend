@@ -10,7 +10,7 @@ const Navbar = () => {
     console.log(auth)
     const handleLogout = () => {
         // We will do here 
-        dispatch(logOut())
+        dispatch(logOut(false))
         localStorage.removeItem('token')
     }
     return (

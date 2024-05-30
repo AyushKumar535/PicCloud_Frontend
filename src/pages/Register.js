@@ -3,9 +3,11 @@ import './login.css';
 import { FaRegUser } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
+import { FaSpinner } from 'react-icons/fa6';
 
 const Register = () => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -14,8 +16,10 @@ const Register = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
+        setLoading(true)
         if (formData.name === "" || formData.email === '' || formData.password === '') {
             toast.error('Please fill all the fields');
+            setLoading(false)
             return;
         }
 
@@ -35,6 +39,7 @@ const Register = () => {
             const data = await res.json();
             if (res.ok) {
                 toast.success(data.message);
+                setLoading(false)
                 setTimeout(() => {
                     navigate('/login');
                 }, 3000);
@@ -43,6 +48,7 @@ const Register = () => {
             }
         } catch (error) {
             toast.error("An error occurred. Please try again.");
+            setLoading(false)
         }
     };
 
@@ -100,7 +106,13 @@ const Register = () => {
                 </div>
                 <div className="btn">
                     <button type="button" onClick={() => navigate('/login')} className="button1">Login</button>
-                    <button type="submit" className="button2">Signup</button>
+                    <div className='button2 flex justify-center items-center gap-2'>
+                        <button type="submit" className="">Signup</button>
+                        {
+                            loading &&
+                            <FaSpinner className='animate-spin' size={20} />
+                        }
+                    </div>
                 </div>
             </form>
         </div>
