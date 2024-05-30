@@ -1,10 +1,17 @@
 import React from 'react'
 import logo from '../images/logo2.jpg'
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { logOut } from '../redux/features/auth-slice';
 const Navbar = () => {
     const navigate = useNavigate();
+    const auth = useSelector((state) => state.auth.isAuth)
+    const dispatch = useDispatch();
+    console.log(auth)
     const handleLogout = () => {
         // We will do here 
+        dispatch(logOut())
+        localStorage.removeItem('token')
     }
     return (
         <div className="text-gray-600 body-font">
@@ -13,11 +20,18 @@ const Navbar = () => {
                     <img className='bg-[#FEC400] rounded-full' src={logo} alt="logo" width={70} height={70} />
                     <span className="ml-3 text-2xl font-bold ">PicCloud</span>
                 </div>
-                <div className=' flex gap-2 text-white'>
-                    <button onClick={() => navigate('/login')} className="inline-flex items-center bg-[#4ddfa7] border-0 py-1 px-3 focus:outline-none hover:bg-[#7ce4bc] rounded text-base mt-4 md:mt-0">Login</button>
-                    <button onClick={() => navigate('/register')} className="inline-flex items-center bg-[#4ddfa7] border-0 py-1 px-3 focus:outline-none hover:bg-[#7ce4bc] rounded text-base mt-4 md:mt-0">Sign up</button>
-                    <button onClick={handleLogout} className="inline-flex items-center bg-[#4ddfa7] border-0 py-1 px-3 focus:outline-none hover:bg-[#7ce4bc] rounded text-base mt-4 md:mt-0">Logout</button>
-                </div>
+                {
+                    auth ?
+                        <div className=' flex gap-2 text-white'>
+                            <button onClick={handleLogout} className="inline-flex items-center bg-[#4ddfa7] border-0 py-1 px-3 focus:outline-none hover:bg-[#7ce4bc] rounded text-base mt-4 md:mt-0">Logout</button>
+                        </div>
+                        :
+                        <div className=' flex gap-2 text-white'>
+                            <button onClick={() => navigate('/login')} className="inline-flex items-center bg-[#4ddfa7] border-0 py-1 px-3 focus:outline-none hover:bg-[#7ce4bc] rounded text-base mt-4 md:mt-0">Login</button>
+                            <button onClick={() => navigate('/register')} className="inline-flex items-center bg-[#4ddfa7] border-0 py-1 px-3 focus:outline-none hover:bg-[#7ce4bc] rounded text-base mt-4 md:mt-0">Sign up</button>
+                        </div>
+                }
+
             </div>
 
         </div >

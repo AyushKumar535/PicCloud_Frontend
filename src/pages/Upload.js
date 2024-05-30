@@ -3,8 +3,10 @@ import { useDropzone } from 'react-dropzone';
 import './Search.css';
 import { FaFileUpload } from 'react-icons/fa';
 import { CiImport } from 'react-icons/ci';
-import axios from 'axios'
+import { json, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 const Upload = () => {
+    const navigate = useNavigate();
     const [file, setFile] = useState(null);
     const [fileUrl, setFileUrl] = useState(''); // This is not an url we have to convert it to base 64
 
@@ -25,21 +27,37 @@ const Upload = () => {
         };
     };
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const result = await axios.post("http://localhost:5000/upload/uploadfiles", {
-            fileUrl: fileUrl
-        })
         try {
-            console.log(result.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    console.log(file);
-    console.log(fileUrl);
+            e.preventDefault()
+            const result = await fetch("http://localhost:5000/upload/uploadfiles", {
+                method: 'POST',
+                body: JSON.stringify({
+                    fileUrl
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            })
+            if (result.ok) {
+                toast.success("File Uploaded Successfully")
+                setTimeout(() => {
+                    navigate('/main')
+                }, 3000)
+            }
+            else {
+                toast.error("Failed to upload ")
+            }
 
+        } catch (error) {
+            toast.error("Failed to upload ")
+        }
+
+
+    }
     return (
         <div className='flex justify-center items-center h-[500px]'>
+            <Toaster />
             <form className="file-upload-form ">
                 <label htmlFor="file" className="file-upload-label">
                     {

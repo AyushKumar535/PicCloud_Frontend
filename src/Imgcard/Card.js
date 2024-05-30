@@ -3,7 +3,7 @@ import { FaLink } from "react-icons/fa6";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 const Card = ({ post }) => {
     const copyImage = (post) => {
-        navigator.clipboard.writeText(post)
+
     }
     return (
         <div className='flex flex-col shadow-md border rounded-xl p-4'>

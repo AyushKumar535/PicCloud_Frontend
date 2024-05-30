@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import './login.css'
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { logIn } from '../redux/features/auth-slice';
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -37,9 +40,8 @@ const Login = () => {
         let data = await res.json();
         if (data && data.token) {
             toast.success(data.message)
-            console.log(data.token)
             localStorage.setItem('token', data.token);
-            console.log(data)
+            dispatch(logIn(true))
             setTimeout(() => {
                 navigate('/main')
             }, 3000)
