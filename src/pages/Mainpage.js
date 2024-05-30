@@ -48,7 +48,7 @@ const Mainpage = () => {
                 {
                     posts.map((post, index) => {
                         return (
-                            <div key={index} className='flex'>
+                            <div key={index} className='flex m-2'>
                                 <Card post={post.mylink} />
                             </div>
                         )
