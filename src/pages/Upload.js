@@ -34,6 +34,7 @@ const Upload = () => {
             setLoading(true)
             const result = await fetch("https://piccloud-backend.onrender.com/upload/uploadfiles", {
                 method: 'POST',
+                credentials: 'include',
                 body: JSON.stringify({
                     fileUrl
                 }),

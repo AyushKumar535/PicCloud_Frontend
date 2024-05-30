@@ -11,6 +11,7 @@ const Mainpage = () => {
         try {
             const res = await fetch("https://piccloud-backend.onrender.com/upload/getAllImages", {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`

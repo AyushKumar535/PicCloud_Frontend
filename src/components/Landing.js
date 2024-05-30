@@ -17,6 +17,7 @@ const Landing = () => {
             const token = localStorage.getItem('token');
             const res = await fetch("https://piccloud-backend.onrender.com/auth/checkLogin", {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`

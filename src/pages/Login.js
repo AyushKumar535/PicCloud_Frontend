@@ -32,13 +32,15 @@ const Login = () => {
         }
         let res = await fetch("https://piccloud-backend.onrender.com/auth/login", {
             method: 'POST',
+            credentials: 'include',
             body: JSON.stringify({
                 email: formData.email,
                 password: formData.password
             }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
+
         })
 
         let data = await res.json();

@@ -26,6 +26,7 @@ const Register = () => {
         try {
             const res = await fetch("https://piccloud-backend.onrender.com/auth/register", {
                 method: 'POST',
+                credentials: 'include',
                 body: JSON.stringify({
                     name: formData.name,
                     email: formData.email,
