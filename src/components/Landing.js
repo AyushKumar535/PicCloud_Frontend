@@ -15,7 +15,7 @@ const Landing = () => {
     const checkForLogin = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await fetch("http://localhost:5000/auth/checkLogin", {
+            const res = await fetch("https://filesharingbackend-cite.onrender.com/auth/checkLogin", {
                 method: 'GET',
                 credentials: 'include',
                 headers: {

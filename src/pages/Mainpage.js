@@ -9,7 +9,7 @@ const Mainpage = () => {
     const [posts, setPosts] = useState([])
     const getAllPosts = async () => {
         try {
-            const res = await fetch("http://localhost:5000/upload/getAllImages", {
+            const res = await fetch("https://filesharingbackend-cite.onrender.com/upload/getAllImages", {
                 method: 'GET',
                 credentials: 'include',
                 headers: {

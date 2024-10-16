@@ -32,7 +32,7 @@ const Upload = () => {
         try {
             e.preventDefault()
             setLoading(true)
-            const result = await fetch("http://localhost:5000/upload/uploadfiles", {
+            const result = await fetch("https://filesharingbackend-cite.onrender.com/upload/uploadfiles", {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify({

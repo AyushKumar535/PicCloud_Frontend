@@ -24,7 +24,7 @@ const Register = () => {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/auth/register", {
+            const res = await fetch("https://filesharingbackend-cite.onrender.com/auth/register", {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify({
