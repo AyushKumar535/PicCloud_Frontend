@@ -5,7 +5,7 @@
 body {
   background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E2E2E2, #FEC400);
+  background: linear-gradient(to right, #E2E2E2, #0FFCBE);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-family: 'Noto Sans', sans-serif;
 }

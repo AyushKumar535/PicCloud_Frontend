@@ -30,7 +30,7 @@ const Login = () => {
             setLoading(false)
             return
         }
-        let res = await fetch("https://piccloud-backend.onrender.com/auth/login", {
+        let res = await fetch("http://localhost:5000/auth/login", {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({

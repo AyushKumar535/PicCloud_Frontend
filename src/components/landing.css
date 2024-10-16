@@ -10,8 +10,8 @@
     align-items: center;
     text-decoration: none;
     letter-spacing: 2px;
-    border-top: 0.5px solid #4ddfa7;
-    border-left: 0.5px solid #4ddfa7;
+    border-top: 0.5px solid #106EBE;
+    border-left: 0.5px solid #106EBE;
     padding-left: 40px;
     cursor: pointer;
     transition: 0.35s ease;
@@ -28,7 +28,8 @@
     left: 5px;
     width: 50px;
     height: 50px;
-    background: #4ddfa7;
+    /* background: #4ddfa7; */
+    background: #106EBE;
     border-radius: 50%;
     transition: 0.35s ease;
     display: flex;

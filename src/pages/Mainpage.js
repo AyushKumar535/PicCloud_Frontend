@@ -9,7 +9,7 @@ const Mainpage = () => {
     const [posts, setPosts] = useState([])
     const getAllPosts = async () => {
         try {
-            const res = await fetch("https://piccloud-backend.onrender.com/upload/getAllImages", {
+            const res = await fetch("http://localhost:5000/upload/getAllImages", {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
